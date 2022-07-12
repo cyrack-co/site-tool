@@ -1,0 +1,16 @@
+Header set Vary User-Agent
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^pc.php$ - [L]
+RewriteRule ^sp.php$ - [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{HTTP_USER_AGENT} (iPod|iPhone|iPad|Android|Windows:blank:Phone)
+RewriteRule (.*) sp.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{HTTP_USER_AGENT} !(iPod|iPhone|iPad|Android|Windows:blank:Phone)
+RewriteRule (.*) pc.php [L]
